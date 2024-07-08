@@ -6,4 +6,9 @@ dependencies:
   - jupyterlab=4.2.*
   - ipywidgets=8.1.*
   - python-dotenv=1.0.*
-  - unstructured[all-docs]=0.14.*
+  - libmagic=5.39
+  - poppler=24.04.*
+  - tesseract=5.4.*
+  - pip
+  - pip:
+    - -r requirements.txt
