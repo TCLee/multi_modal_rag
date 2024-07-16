@@ -1,0 +1,612 @@
+[
+  {
+    "type": "CompositeElement",
+    "element_id": "339d633ee44be059b11384239b7a15b8",
+    "text": "3 2 0 2 c e D 1 1\n\n] V C . s c [\n\n2 v 5 8 4 8 0 . 4 0 3 2 : v i X r a\n\nVisual Instruction Tuning\n\nHaotian Liu1 1University of Wisconsin\u2013Madison\n\n\u21e4, Chunyuan Li2 \u21e4, Qingyang Wu3, Yong Jae Lee1\n\n2Microsoft Research 3Columbia University https://llava-vl.github.io\n\nAbstract\n\nInstruction tuning large language models (LLMs) using machine-generated instruction-following data has been shown to improve zero-shot capabilities on new tasks, but the idea is less explored in the multimodal \ufb01eld. We present the \ufb01rst attempt to use language-only GPT-4 to generate multimodal language-image instruction-following data. By instruction tuning on such generated data, we in- troduce LLaVA: Large Language and Vision Assistant, an end-to-end trained large multimodal model that connects a vision encoder and an LLM for general- purpose visual and language understanding. To facilitate future research on visual instruction following, we construct two evaluation benchmarks with diverse and challenging application-oriented tasks. Our experiments show that LLaVA demon- strates impressive multimodal chat abilities, sometimes exhibiting the behaviors of multimodal GPT-4 on unseen images/instructions, and yields a 85.1% rela- tive score compared with GPT-4 on a synthetic multimodal instruction-following dataset. When \ufb01ne-tuned on Science QA, the synergy of LLaVA and GPT-4 achieves a new state-of-the-art accuracy of 92.53%. We make GPT-4 generated visual instruction tuning data, our model, and code publicly available.",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 1,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "9690617a1ac026d235e1201a4554cc20",
+    "text": "1 Introduction\n\nHumans interact with the world through many channels such as vision and language, as each individual channel has a unique advantage in representing and communicating certain concepts, and thus facilitates a better understanding of the world. One of the core aspirations in arti\ufb01cial intelligence is to develop a general-purpose assistant that can effectively follow multi-modal vision-and-language instructions, aligned with human intent to complete various real-world tasks in the wild [4, 27, 26].\n\nTo this end, the community has witnessed an emergent interest in developing language-augmented foundation vision models [27, 16], with strong capabilities in open-world visual understanding such as classi\ufb01cation [40, 21, 57, 54, 39], detection [29, 62, 33], segmentation [25, 63, 58] and captioning [50, 28], as well as visual generation and editing [42, 43, 56, 15, 44, 30]. We refer readers to the Computer Vision in the Wild reading list for a more up-to-date literature compilation [12]. In this line of work, each task is solved independently by one single large vision model, with the task instruction implicitly considered in the model design. Further, language is only utilized to describe the image content. While this allows language to play an important role in mapping visual signals to language semantics\u2014a common channel for human communication, it leads to models that usually have a \ufb01xed interface with limited interactivity and adaptability to the user\u2019s instructions.\n\nLarge language models (LLM), on the other hand, have shown that language can play a wider role: a universal interface for a general-purpose assistant, where various task instructions can be explicitly represented in language and guide the end-to-end trained neural assistant to switch to the task of interest to solve it. For example, the recent success of ChatGPT [35] and GPT-4 [36] have demonstrated the power of aligned LLMs in following human instructions, and have stimulated tremendous interest in developing open-source LLMs. Among them, LLaMA [49] is an open- source LLM that matches the performance of GPT-3. Alpaca [48], Vicuna [9], GPT-4-LLM [38]\n\n37th Conference on Neural Information Processing Systems (NeurIPS 2023).\n\nutilize various machine-generated high-quality instruction-following samples to improve the LLM\u2019s alignment ability, reporting impressive performance compared with proprietary LLMs. Importantly, this line of work is text-only.\n\nIn this paper, we present visual instruction-tuning, the \ufb01rst attempt to extend instruction-tuning to the language-image multimodal space, to pave the way towards building a general-purpose visual assistant. In particular, our paper makes the following contributions:\n\nMultimodal instruction-following data. One key challenge is the lack of vision-language instruction-following data. We present a data reformation perspective and pipeline to convert image-text pairs into an appropriate instruction-following format, using ChatGPT/GPT-4. \u2022 Large multimodal models. We develop a large multimodal model (LMM), by connecting the open-set visual encoder of CLIP [40] with the language decoder Vicuna [9], and \ufb01ne-tuning end-to-end on our generated instructional vision-language data. Our empirical study validates the effectiveness of using generated data for LMM instruction-tuning, and suggests practical tips for building a general-purpose instruction-following visual agent. When ensembled with GPT-4, our approach achieves SoTA on the Science QA [34] multimodal reasoning dataset. \u2022 Multimodal instruction-following benchmark. We present LLaVA-Bench with two challenging benchmarks, with a diverse selection of paired images, instructions and detailed annotations. \u2022 Open-source. We release the following assets to the public: the generated multimodal instruction\n\ndata, the codebase, the model checkpoints, and a visual chat demo.",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 1,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "f6d5f8e68ecf8dfe77d77fc2d457f634",
+    "text": "2 Related Work\n\nMultimodal Instruction-following Agents. In computer vision, existing works that build instruction- following agents can be broadly categorized into two classes: (i) End-to-end trained models, which are separately explored for each speci\ufb01c research topic. For example, the vision-language navigation task [3, 19] and Habitat [47] require the embodied AI agent to follow natural language instructions and take a sequence of actions to complete goals in visual environments. In the image editing domain, given an input image and a written instruction that tells the agent what to do, InstructPix2Pix [6] edits images by following the human instructions. (ii) A system that coordinates various models via LangChain [1] / LLMs [35], such as Visual ChatGPT [53], X-GPT [63], MM-REACT [55], VisProg [18], and ViperGPT [46]. While sharing the same goal in building instruction-following agents, we focus on developing an end-to-end trained language-vision multimodal model for multiple tasks.\n\nInstruction Tuning. In the natural language processing (NLP) community, to enable LLMs such as GPT-3 [7], T5 [41], PaLM [10], and OPT [60] to follow natural language instructions and complete real-world tasks, researchers have explored methods for LLM instruction-tuning [37, 52, 51], leading to instruction-tuned counterparts such as InstructGPT [37]/ChatGPT [35], FLAN-T5 [11], FLAN-PaLM [11], and OPT-IML [22], respectively. It turns out that this simple approach can effectively improve the zero- and few-shot generalization abilities of LLMs. It is thus natural to borrow the idea from NLP to computer vision. More broadly, the teacher-student distillation ideas with foundation models have been studied in other topics such as image classi\ufb01cation [14]. Flamingo [2] can be viewed as the GPT-3 moment in the multimodal domain, due to its strong performance on zero-shot task transfer and in-context-learning. Other LMMs trained on image- text pairs include BLIP-2 [28], FROMAGe [24], and KOSMOS-1 [20]. PaLM-E [13] is an LMM for embodied AI. Based on the recent \u201cbest\u201d open-source LLM LLaMA, OpenFlamingo [5] and LLaMA-Adapter [59] are open-source efforts that enable LLaMA to use image inputs, paving the way to build open-source multimodal LLMs. While these models present promising task transfer generalization performance, they are not explicitly tuned with vision-language instruction data, and their performance in multimodal tasks usually falls short compared to language-only tasks. In this paper, we aim to \ufb01ll this gap and study its effectiveness. Finally, note that visual instruction tuning is different from visual prompt tuning [23]: the former aims to improve the model\u2019s instruction- following abilities, while the latter aims to improve the parameter-ef\ufb01ciency in model adaptation.",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 2,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "3ef970d51c4e657d89ddfee41ac6704b",
+    "text": "3 GPT-assisted Visual Instruction Data Generation\n\nThe community has witnessed a surge in the amount of public multimodal data such as image-text pairs, ranging from CC [8] to LAION [45]. However, when it comes to multimodal instruction-\n\n2\n\nContext type 1: Captions A group of people standing outside of a black vehicle with various luggage. Luggage surrounds a vehicle in an underground parking area People try to \ufb01t all of their luggage in an SUV. The sport utility vehicle is parked in the public garage, being packed for a trip Some people with luggage near a van that is transporting it. Context type 2: Boxes person: [0.681, 0.242, 0.774, 0.694], backpack: [0.384, 0.696, 0.485, 0.914], suitcase: ...<omitted>\n\nResponse type 1: conversation Question: What type of vehicle is featured in the image? Answer: The image features a black sport utility vehicle (SUV) ...<omitted> Response type 2: detailed description The image is an underground parking area with a black sport utility vehicle (SUV) parked. There are three people in the scene, with one person standing closer to the left side of the vehicle, another person in the middle, and the third person on the right side. They are all working together to pack their luggage into the SUV for a trip. ...<omitted> Response type 3: complex reasoning Question: What challenges do these people face? Answer: In the image, a group of people is standing outside a black SUV in a parking area, surrounded by various pieces of luggage, including suitcases and backpacks. They are facing the challenge of \ufb01tting all their luggage into the black SUV. There are multiple suitcases and backpacks to be packed, which suggests that the group has a signi\ufb01cant amount of belongings ...<omitted>\n\nTable 1: One example to illustrate the instruction-following data. The top block shows the contexts such as captions and boxes used to prompt GPT, and the bottom block shows the three types of responses. Note that the visual image is not used to prompt GPT, we only show it here as a reference.\n\nfollowing data, the available amount is limited, partially because the process for creating such data is time-consuming and less well-de\ufb01ned when human crowd-scouring is considered. Inspired by the success of recent GPT models in text-annotation tasks [17], we propose to leverage ChatGPT/GPT-4 for multimodal instruction-following data collection, based on the widely existing image-pair data.\n\nFor an image Xv and its associated caption Xc, it is natural to create a set of questions Xq with the intent to instruct the assistant to describe the image content. We prompt GPT-4 to curate such a list of questions (see details in Appendix). Therefore, a simple way to expand an image-text pair to its instruction-following version is Human : Xq Xv<STOP> Assistant : Xc<STOP>. Though cheap to construct, this simple expanded version lacks diversity and in-depth reasoning in both the instructions and responses.\n\nTo mitigate this issue, we leverage language-only GPT-4 or ChatGPT as the strong teacher (both accept only text as input), to create instruction-following data involving visual content. Speci\ufb01cally, in order to encode an image into its visual features to prompt a text-only GPT, we use two types of symbolic representations: (i) Captions typically describe the visual scene from various perspectives; (ii) Bounding boxes usually localize the objects in the scene, and each box encodes the object concept and its spatial location. One example is shown in the top block of Table 14.\n\nThis symbolic representation allows us to encode the image as an LLM-recognizable sequence. We use COCO images [31] and generate three types of instruction-following data. One example per type is shown in the bottom block of Table 14. For each type, we \ufb01rst manually design a few examples. They are the only human annotations we have during data collection, and are used as seed examples in in-context-learning to query GPT-4.",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 2,
+      "orig_elements": "eJztWm1v3DYS/ivEfkoAr6z3F1/RQ5pD2wC5JHdx2wC+wKCk0S5braiKlNdu0f9+M0Npdx1vc5fCBu4af9rViC/DIeeZZ4a6+HUBLWygs5eqXpyJRVEEeZU2pYyLsszKGuIsqJOwzsKyDvM4XZyIxQasrKWV2P7XRaX1UKtOWjD83MobPdrLNajV2qIkDH0f+0zirartGqVBxtJeq85Sv4uLsEi8+EQEeR560fsTsRMUQeplJAj8OPP8oxLXCUULc2MsbGglb9Q1tG97WcHiN3xBCl8aPQ74THriM1xWA+APLzzIQj9P0jjCsdMgLYJo4XrB5UbXqlFHmkWJn+xa9YOuwJhds8CP8iDPvCCJooQH62HYKGOU7szlZL+LXxc4OmkURbiK32gJA1Ro0stWV9LqgZXtJVttcfqdgcGc2qoFOO20hVLrn8zpZmytIjVleznI1SkNfqq6frTLWlfm9OVL+f2zpRlLA9br62bxG1sELFQWtbmsWmkMLaDESXyvCIO8wAaNauGyVqgP6nHzx+dfTGN1ckMrXdxRZ3pvb3p+L/u+Vbh4VO10et3KbjXKFZ+xiwV0q8V7lhp7a3dCP4yXfrYMovMgOYv9s4gPbI89L7txUwKZM2TJsD/zddKEURPKvIybJqkAN0LGZRhXRZxURV7w+bFwTcd5EYlv3pwv0V4KD1otvldmlK140Rk7jGxN8TdcvfgGOhh4CaTAvLJzZVs+jh+6XRn7MYAfBpH0/SSs4gbn5gNUJX7pRw/odpGXkE/FhZc7t2MBds+cIIjx31HJ1OnR7e7J7SI/TT8jt/uPoebQ7c7XICq92YydsjdiLY3YKtvxxgspzDisQKhOWGwmN3rsrNCN6McSVyTYTmwmQSbC1tVa4AhqgwouaQbRSzWYEzHgelW3Es2gN+L5c3GRvxdWi5fPXrx+JS7i5L0nvtVbuILhRGzX0AllSSsw1OpgGrWHg+Wh/7+SA4HCFZzTso7gQFRUVZ7EfuPHQVSAn/pVlmeBRNNAUZfVg+FAHkcUSUM/jbyAnHwnKHzn9XmSeelRAXd5RIH7QQHUPYn+xChw6NThoW98rXFJwzGnCDE6plCFAI1MZdgkRZnJKi5RWEeVOwUP4hRRWHhIhMLI9xI68dNzjKwz5UAYJbkXHhG4Ho8ucT8ukWR4sv68LhEdusRz3XFAorlFcCaey57mNeKZWA167Dmsge5bEMbKrqZohYfYqBrolRRlK6ufxBWsFRqFguRaXMlB6dGIdlytcGZPvHR/KGzimF1tsN/cA4Oo7AQKYVjxS4yNw080DcZuKd64ue1wQyHvX2NT+oEVsm1pdoy+apinmUZ6+933nqDobXo9WDFa1VIE301neHyM4lP0nmL2SuLGwYkogaZGr6EmjR5QUzuoXrzFqDsbghc5z9qBpEZXkoaTliawGNZ5dhpKWU/cMnJ4Jr7S1xjC0R2M7nA/fS/NgxM8eGEc0k+WxfSTFjFucomqkDrcLsqnNyn9xHlCP0VA7cyobCUNnAnP877QG2XRsb/8JDLgh0VTVnlZIxMo6qpJgjqOS4AqK7IM3EF8ENwLAoQTCu1J4oWMa5MgDsIp847ynLLzOwLX5RH5Pgn5/oeAjTnx5bzKaXzEObvEI4PznHIDc9qo1TjAMloG3o/96kEh8dBnXtDsx3ylros6QzKQhzKr/ALZQZ3naeEDZhNZGYYPxxESxwmywlGA6TlPwylZjuKUiPQdgevx6Cn/r57yYOf9n4DBqjOw4wCV7jDjNDy7+MeIzqgoTv1A4Y3bYOg9iKcNng/0zV1EZY/9q3jWmS0MZxyLWTQ3NDvWcDxEP8EQ/vRWFBO3VcQIitxNorlq/GMqjM+s6n4m1OpjpIID+H+jhKMKzCcGoL64wAF2RGBasKmgQ+rAo+oOpsC+50tVq/HMEH+h1i00Vsz8iQTTlCeossbnYe4/jb5Rde3e1vxs12qo5zbatRkIRHhQ1vWGVSWStNVu2VavgMdGJYhN3KFOk3K46gPW431sFyI6KBs0w7VAm6IyNM8Hp6VaoxJAeC5qnsDsbNcg6OwPyYuDo4NLvcM9cUPv0M95A0ln4n639vhkRzbxkJQ3O07aK0AEopGntZ9g36odeeSZQxk29sy8zIFNUWs2J1WH5rXRYBMxZcZHdv8d8+4UPjxSDB1MsI9PT3tWwsRJqQ6kqjW2XVGUNI500tjOZFSpkngSVp1yOlWyswclqhJazTUn88d5IqRRkfuNhBD8JMAQ1SSAQTBJZVQkaQ4PWDzOKNstgsCRwOk58H3f86dKcepFxySuz2P0u6/SMRrgMwmP57JsOSy+RmiHa7nhfFQL1bajwVTPgoOugxJso9tWbwkLaJ0uHbW6R/fXFHDWemschLi80OwqxNWcfTMAcJY4UsWZUHtAsLV0GbQPBaW2Vm/uDOtiFNmKgW6YYBtx7JVmbSfEuHJ3SbuQidt1dLotQlzX3vAMVIF2yEU4M0CD/7sKvE8CkLhuZJhVmUzKEAo/T/0ojIscQMZhXsj4AQEk9QKCh3RKNGdBkEe7u6aUMeWuxHV6hJB7gpAYVflMIOQ2Hpy4W6MrJLAMLVNwRgdsFYZjivHIZKxCHnGD8bqSo3EQM20+EzQ+VI6zIHTwNRNVntQGlogqZtwwE0GcaKnHFtp2WYNjBB16OF8mrccNsuRq0Nt6aSo8tVyvMgRLRLAGYr4vOtOrwXEo5rpjxTowriDvZYgQdLxaw4wVl7yUHW6bSx+sNMhgLgKK11teQq8N42dL11qEPM8Rj3CQU7rnjnlxv3OzdduMqCbyL35DVTLCrYkNo/8Dmg6ulXElOL53oys3h8efhFWZRCcrqzKtoUx88OssqaVfFmmRJlAED3gZQBQGYQebOyCaBVHuHyBTcFTiOj1i1X1hVRgEnwlWfU3ZXzeRgndXjCEKKQoaRFeKDsfMUsS76oToADEHSuzRW9Gt3QmiHAQ44fh5ygiNePezS5EdW7KEHUSjJgd3oMifuUj3xqX2JewzQ0eYOuuJH+CAoSBq0MQjczFHpRBKzQfTPzFIilzdgJHqWd8DJpTXT6dcDIGHU0+jmOFtJd84wHVPFpgtsr+9Z92t+R2AovoJmQht8y2j7Bkt/93VF2/PX7/5UjzbrRPllROSGnpcrTGxBNnzivQ0NkUMyoCdZk4l3Id5kpazxFrxs71xW9Yh3vdo7X1ujmtGwrj+kK06srkniZ+EjmWdNnGdFgX4cVg1hUzzPEQ21/hlXYdF+aBMLifoK/I5F3SCJMu8wmFh4PNXQ3clrtMjOt5XMljEf+IvCG4ng1ogRVMrl/WhT+IGjcDUZsdn5smXnDQ5fEJQnWgOJU5MpOygqZIEsqK63BN2TYnkCjGNOzLS0FdDZJinJwfY+hFOpLor3V4xArnkboeYb3uodiUhZJZU90K1alcTxBxOU0ltBn6uWBG8TcPsSrf71FA6rjcvkm3ATHWr97mnudmUmu5XB+ixO2rC+2TOxBP1dH/ZjO0Va3Ub9KfJub7qvpHalfHwXPV0HK/A/AXHwsG+omIfrXzOm0cekPyiVb+4AXX5I3YyHxRuCf9oG6jnZAlz0JxsyNsyh0KD/oXsnIcm/b1bpQECakyUd/XbfeKP9piKCfGnoWySIKGDKgvTLJNNk/h1nkMZZFWRBigvHhBlY7qGDZIimVHWCbI4nr5AiYOEWeldiev0iLL3xUH98LMpuTHbOQ4dVF6nQtdoDnBrzxAl3/y8fPn3Je3YqlO/sMcZQCJIdSpijoRSz18/f+26YHYaBe/ZuVfuI+o7FbSP1fYOXb8nMKW7kQ8x4Fah7hAGBNFtxh7qxxjqMHpA+oq8cZxBUa3ohqOB7TzZ4a0EYxXhsMvo9+k3Zf5iLa+Q+Lrs/k7izOR2AFf3Q+MhSa53U5D6SCSnMuWyBTl07jaJePUwBbePYdn7fwNS5h+z"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "a7c0170aa61bb17006c9e1955bdace8d",
+    "text": "\u2022 Conversation. We design a conversation between the assistant and a person asking questions about this photo. The answers are in a tone as if the assistant is seeing the image and answering the question. A diverse set of questions are asked about the visual content of the image, including the object types, counting the objects, object actions, object locations, relative positions between objects. Only questions that have de\ufb01nite answers are considered. Please see Appendix for the detailed prompt.\n\n\u2022 Detailed description. To include a rich and comprehensive description for an image, we create a list of questions with such an intent. We prompt GPT-4 then curate the list (see detailed prompts\n\n3\n\nand curation process in Appendix). For each image, we randomly sample one question from the list to ask GPT-4 to generate the detailed description.\n\n\u2022 Complex reasoning. The above two types focus on the visual content itself, based on which we further create in-depth reasoning questions. The answers typically require a step-by-step reasoning process by following rigorous logic.\n\nWe collect 158K unique language-image instruction-following samples in total, including 58K in conversations, 23K in detailed description, and 77k in complex reasoning, respectively. We ablated the use of ChatGPT and GPT-4 in our early experiments, and found that GPT-4 consistently provides higher quality instruction-following data, such as spatial reasoning.\n\n4 Visual Instruction Tuning\n\n4.1 Architecture\n\nThe primary goal is to effectively leverage the capabilities of both the pre-trained LLM and visual model. The network archtecture is illustrated in Figure 1. We choose Vicuna [9] as our LLM f( ) \u00b7 parameterized by , as it has the best instruction following capabilities in language tasks among publicly available checkpoints [48, 9, 38].",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 3,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "bb65d29265798bc3bdc1c44de7ca8a32",
+    "text": "Language Response   <latexit sha1_base64=\"I8RxJE902anMmciAczfxKVfe1PY=\">AAAB/XicbVDLSsNAFJ3UV62v+Ni5GSyCq5KIqMuiG5cV7APaECbTSTt0MgkzN2INwV9x40IRt/6HO//GaZuFth64cDjnXu69J0gE1+A431ZpaXllda28XtnY3NresXf3WjpOFWVNGotYdQKimeCSNYGDYJ1EMRIFgrWD0fXEb98zpXks72CcMC8iA8lDTgkYybcPsl4Q4k7uZz1gDwCQkTz37apTc6bAi8QtSBUVaPj2V68f0zRiEqggWnddJwEvIwo4FSyv9FLNEkJHZMC6hkoSMe1l0+tzfGyUPg5jZUoCnqq/JzISaT2OAtMZERjqeW8i/ud1UwgvvYzLJAUm6WxRmAoMMZ5EgftcMQpibAihiptbMR0SRSiYwComBHf+5UXSOq255zX39qxavyriKKNDdIROkIsuUB3doAZqIooe0TN6RW/Wk/VivVsfs9aSVczsoz+wPn8ASWCVxg==</latexit>Xa  Language Model  <latexit sha1_base64=\"Dpm7JzZPmwmdKOQRfbESjXZnclA=\">AAAB9XicbVBNS8NAEJ3Ur1q/qh69LBbBU0lE1GPRi8cK9gOaWDbbTbt0dxN2N0oJ+R9ePCji1f/izX/jts1BWx8MPN6bYWZemHCmjet+O6WV1bX1jfJmZWt7Z3evun/Q1nGqCG2RmMeqG2JNOZO0ZZjhtJsoikXIaScc30z9ziNVmsXy3kwSGgg8lCxiBBsrPUT9zA+jDPnJiOV5v1pz6+4MaJl4BalBgWa/+uUPYpIKKg3hWOue5yYmyLAyjHCaV/xU0wSTMR7SnqUSC6qDbHZ1jk6sMkBRrGxJg2bq74kMC60nIrSdApuRXvSm4n9eLzXRVZAxmaSGSjJfFKUcmRhNI0ADpigxfGIJJorZWxEZYYWJsUFVbAje4svLpH1W9y7q3t15rXFdxFGGIziGU/DgEhpwC01oAQEFz/AKb86T8+K8Ox/z1pJTzBzCHzifP63EkqI=</latexit>f  Projection  <latexit sha1_base64=\"nmaulJAcZ9L9s1EtmepKU/wnbmw=\">AAAB7XicbVDLSgNBEOz1GeMr6tHLYBA8hV0R9Rj04jGCeUASwuykNxkzO7PMzAphyT948aCIV//Hm3/jJNmDJhY0FFXddHeFieDG+v63t7K6tr6xWdgqbu/s7u2XDg4bRqWaYZ0poXQrpAYFl1i33ApsJRppHApshqPbqd98Qm24kg92nGA3pgPJI86odVKjE0ZZc9Irlf2KPwNZJkFOypCj1it9dfqKpTFKywQ1ph34ie1mVFvOBE6KndRgQtmIDrDtqKQxmm42u3ZCTp3SJ5HSrqQlM/X3REZjY8Zx6Dpjaodm0ZuK/3nt1EbX3YzLJLUo2XxRlApiFZm+TvpcI7Ni7AhlmrtbCRtSTZl1ARVdCMHiy8ukcV4JLivB/UW5epPHUYBjOIEzCOAKqnAHNagDg0d4hld485T34r17H/PWFS+fOYI/8D5/AKc0jy8=</latexit>W  Vision Encoder  <latexit sha1_base64=\"OUBGioCbGiTqe2ceR2O0Z900t+I=\">AAAB/XicbVDLSsNAFJ3UV62v+Ni5GSyCq5KIqMuiG5cV7AObECbTSTt08mDmplhD8FfcuFDErf/hzr9x2mahrQcuHM65l3vv8RPBFVjWt1FaWl5ZXSuvVzY2t7Z3zN29lopTSVmTxiKWHZ8oJnjEmsBBsE4iGQl9wdr+8Hrit0dMKh5HdzBOmBuSfsQDTgloyTMPMscP8H3uZQ6wBwDIRnnumVWrZk2BF4ldkCoq0PDML6cX0zRkEVBBlOraVgJuRiRwKlhecVLFEkKHpM+6mkYkZMrNptfn+FgrPRzEUlcEeKr+nshIqNQ49HVnSGCg5r2J+J/XTSG4dDMeJSmwiM4WBanAEONJFLjHJaMgxpoQKrm+FdMBkYSCDqyiQ7DnX14krdOafV6zb8+q9asijjI6REfoBNnoAtXRDWqgJqLoET2jV/RmPBkvxrvxMWstGcXMPvoD4/MHbIKV3Q==</latexit>Zv  <latexit sha1_base64=\"yn0ZUZSqKssiKPDZqlv9C0+1rLg=\">AAAB/XicbVDLSsNAFJ3UV62v+Ni5GSyCq5KIqMuimy4r2Ac0IUymk3bo5MHMTbGG4K+4caGIW//DnX/jtM1CWw9cOJxzL/fe4yeCK7Csb6O0srq2vlHerGxt7+zumfsHbRWnkrIWjUUsuz5RTPCItYCDYN1EMhL6gnX80e3U74yZVDyO7mGSMDckg4gHnBLQkmceZY4f4EbuZQ6wBwDIxnnumVWrZs2Al4ldkCoq0PTML6cf0zRkEVBBlOrZVgJuRiRwKlhecVLFEkJHZMB6mkYkZMrNZtfn+FQrfRzEUlcEeKb+nshIqNQk9HVnSGCoFr2p+J/XSyG4djMeJSmwiM4XBanAEONpFLjPJaMgJpoQKrm+FdMhkYSCDqyiQ7AXX14m7fOafVmz7y6q9ZsijjI6RifoDNnoCtVRAzVRC1H0iJ7RK3oznowX4934mLeWjGLmEP2B8fkDUD6Vyw==</latexit>Hv  <latexit sha1_base64=\"w6zXykpCeX38FkkjKhaO+oe7y2E=\">AAAB/XicbVDLSsNAFJ34rPUVHzs3g0VwVRIRdVl047KCfUATwmQ6aYdOJmHmplhD8FfcuFDErf/hzr9x+lho64ELh3Pu5d57wlRwDY7zbS0tr6yurZc2yptb2zu79t5+UyeZoqxBE5Godkg0E1yyBnAQrJ0qRuJQsFY4uBn7rSFTmifyHkYp82PSkzzilICRAvsw98IIt4sg94A9AEA+LIrArjhVZwK8SNwZqaAZ6oH95XUTmsVMAhVE647rpODnRAGnghVlL9MsJXRAeqxjqCQx034+ub7AJ0bp4ihRpiTgifp7Iiex1qM4NJ0xgb6e98bif14ng+jKz7lMM2CSThdFmcCQ4HEUuMsVoyBGhhCquLkV0z5RhIIJrGxCcOdfXiTNs6p7UXXvziu161kcJXSEjtEpctElqqFbVEcNRNEjekav6M16sl6sd+tj2rpkzWYO0B9Ynz9pXpXb</latexit>Xv  Image  <latexit sha1_base64=\"/KN5R7NUwEKH6XBR4DKeLzGzIrU=\">AAAB/XicbVDLSsNAFJ3UV62v+Ni5GSyCq5KIqMuimy4r2Ac0IUymk3bo5OHMjVhD8FfcuFDErf/hzr9x2mahrQcuHM65l3vv8RPBFVjWt1FaWl5ZXSuvVzY2t7Z3zN29topTSVmLxiKWXZ8oJnjEWsBBsG4iGQl9wTr+6Hrid+6ZVDyObmGcMDckg4gHnBLQkmceZI4f4EbuZQ6wBwDI7vLcM6tWzZoCLxK7IFVUoOmZX04/pmnIIqCCKNWzrQTcjEjgVLC84qSKJYSOyID1NI1IyJSbTa/P8bFW+jiIpa4I8FT9PZGRUKlx6OvOkMBQzXsT8T+vl0Jw6WY8SlJgEZ0tClKBIcaTKHCfS0ZBjDUhVHJ9K6ZDIgkFHVhFh2DPv7xI2qc1+7xm35xV61dFHGV0iI7QCbLRBaqjBmqiFqLoET2jV/RmPBkvxrvxMWstGcXMPvoD4/MHSKCVxg==</latexit>Hq  <latexit",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 4,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "1fce310ed2f91f60d0ee501f5599f19a",
+    "text": "sha1_base64=\"4a/5KuBhqFrRimsGds8xVP6ZkkY=\">AAAB/XicbVDLSsNAFJ34rPUVHzs3g0VwVRIRdVl047KCfUAbwmQ6aYdOJnHmRqwh+CtuXCji1v9w5984bbPQ1gMXDufcy733BIngGhzn21pYXFpeWS2tldc3Nre27Z3dpo5TRVmDxiJW7YBoJrhkDeAgWDtRjESBYK1geDX2W/dMaR7LWxglzItIX/KQUwJG8u39rBuEuJ37WRfYAwBkd3nu2xWn6kyA54lbkAoqUPftr24vpmnEJFBBtO64TgJeRhRwKlhe7qaaJYQOSZ91DJUkYtrLJtfn+MgoPRzGypQEPFF/T2Qk0noUBaYzIjDQs95Y/M/rpBBeeBmXSQpM0umiMBUYYjyOAve4YhTEyBBCFTe3YjogilAwgZVNCO7sy/OkeVJ1z6ruzWmldlnEUUIH6BAdIxedoxq6RnXUQBQ9omf0it6sJ+vFerc+pq0LVjGzh/7A+vwBYcCV1g==</latexit>Xq  Language Instruction ",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 4,
+      "orig_elements": "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",
+      "is_continuation": true
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "377364653955616b6e1e907969143074",
+    "text": "Figure 1: LLaVA network architecture. For an input image Xv, we consider the pre-trained CLIP visual encoder ViT-L/14 [40], which provides the visual feature Zv = g(Xv). The grid features before and after the last Transformer layer are considered in our experiments. We consider a simple linear layer to connect image features into the word embedding space. Speci\ufb01cally, we apply a trainable projection matrix W to convert Zv into language embedding tokens Hv, which have the same dimensionality as the word embedding space in the language model:\n\n(1) Thus, we have a sequence of visual tokens Hv. Note that our simple projection scheme is lightweight, which allows us to iterate data centric experiments quickly. More sophisticated schemes to con- nect the image and language representations can also be considered, such as gated cross-attention in Flamingo [2] and Q-former in BLIP-2 [28]. We leave exploring possibly more effective and sophisticated architecture designs for LLaVA as future work.\n\n4.2 Training\n\nFor each image Xv, we generate multi-turn conversation data (X1 a ), where T is the total number of turns. We organize them as a sequence, by treating all answers as the assistant\u2019s response, and the instruction Xt\n\ninstruct = Randomly choose [X1 Xt q, q, Xv] or [Xv, X1 q], the \ufb01rst turn t = 1 the remaining turns t > 1 (2)\n\nXt\n\n\u21e2\n\nThis leads to the uni\ufb01ed format for the multimodal instruction-following sequence illustrated in Table 2. We perform instruction-tuning of the LLM on the prediction tokens, using its original auto-regressive training objective.\n\nSpeci\ufb01cally, for a sequence of length L, we compute the probability of the target answers Xa by:\n\nL p(Xa| Xv, Xinstruct) = p\u2713(xi| Xv, Xinstruct,<i, Xa,<i), (3)",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 4,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "270b762b528b7e316f71d38fdb54bec3",
+    "text": "i=1 Y\n\n4\n\nXsystem-message <STOP> Human : X1 Human : X2 instruct <STOP> Assistant: X1 instruct <STOP> Assistant: X2 a <STOP> a <STOP>\n\n\u00b7 \u00b7\n\nTable 2: The input sequence used to train the model. Only two conversation turns are illustrated here; in practice, the number of turns varies based on the instruction-following data. In our current implementation, we follow Vicuna-v0 [9] to set the system message Xsystem-message and we set <STOP> = ###. The model is trained to predict the assistant answers and where to stop, and thus only green sequence/tokens are used to compute the loss in the auto-regressive model.\n\nwhere \u2713 is the trainable parameters, Xinstruct,<i and Xa,<i are the instruction and answer tokens in all turns before the current prediction token xi, respectively. Please see Table 2 for an illustration of the prediction tokens. For the conditionals in (3), we explicitly add Xv to emphasize the fact that the image is grounded for all answers, and we omit Xsystem-message and all previous <STOP> for better readability. For LLaVA model training, we consider a two-stage instruction-tuning procedure.\n\nStage 1: Pre-training for Feature Alignment. To strike a balance between concept coverage and training ef\ufb01ciency, we \ufb01lter CC3M to 595K image-text pairs. Please see Appendix for details of the \ufb01ltering process. These pairs are converted to the instruction-following data using the naive expansion method describe in Section 3. Each sample can be treated as a single-turn conversation. To construct the input Xinstruct in (2), for an image Xv, a question Xq is randomly sampled, which is a language instruction to request the assistant to describe the image brie\ufb02y. The ground-truth prediction answer Xa is the original caption. In training, we keep both the visual encoder and LLM weights frozen, and maximize the likelihood of (3) with trainable parameters \u2713 = W (the projection matrix) only. In this way, the image features Hv can be aligned with the pre-trained LLM word embedding. This stage can be understood as training a compatible visual tokenizer for the frozen LLM.\n\nStage 2: Fine-tuning End-to-End. We always keep the visual encoder weights frozen, and continue to update both the pre-trained weights of the projection layer and LLM in LLaVA; i.e., the trainable parameters are \u2713 =\n\nW, {\n\n}\n\n\u2022 Multimodal Chatbot. We develop a Chatbot by \ufb01ne-tuning on the 158K language-image instruction-following data in Section 3. Among the three types of responses, conversation is multi-turn while the other two are single-turn. They are uniformly sampled in training.\n\n\u2022 Science QA. We study our method on the ScienceQA benchmark [34], the \ufb01rst large-scale multimodal science question dataset that annotates the answers with detailed lectures and explanations. Each question is provided a context in the form of natural language or an image. The assistant provides the reasoning process in natural language and selects the answer among multiple choices. For training in (2), we organize the data as a single turn conversation, the question & context as Xinstruct, and reasoning & answer as Xa.\n\n5 Experiments\n\nWe assess the performance of LLaVA in instruction-following and visual reasoning capabilities with two primary experimental settings: multimodal chatbot and the ScienceQA dataset, respectively. We A100s, following Vicuna\u2019s hyperparameters [9]. We pre-train our model train all models with 8 on the \ufb01ltered CC-595K subset for 1 epoch with a learning rate of 2e-3 and a batch size of 128, and \ufb01ne-tune on the proposed LLaVA-Instruct-158K dataset for 3 epochs, with a learning rate of 2e-5 and a batch size of 32. See Appendix for more training details.",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 4,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "eef6b2d3e1ce973d33aacc9d31f93eab",
+    "text": "5.1 Multimodal Chatbot\n\nWe developed a chatbot demo to show the image understanding and conversation abilities of LLaVA, and to study how well LLaVA is able to digest visual inputs and exhibit instruction-following capabilities. We \ufb01rst use the examples in the original GPT-4 paper [36], shown in Table 3 (more examples in Appendix), that require in-depth image understanding. For comparisons, we quote the prompt and response of the multimodal GPT-4 from their paper, and query BLIP-2 and OpenFlamingo model checkpoints to get their response.\n\n5\n\nVisual input example, Extreme Ironing:\n\nSource: https://www.barnorama.com/wp-content/uploads/2016/12/03-Confusing-Pictures.jpg What is unusual about this image? The unusual aspect of this image is a man ironing clothes on the back of a minivan or van. This is not a typical place to perform this activity, as one would usually iron clothes in a more stationary and safe location, such as a home, using a regular ironing board. The scene depicted in the image is peculiar as it involves a makeshift ironing setup on a vehicle, which can be both unsafe and unconventional. Additionally, it is not clear how the man is able to maintain balance and stability while ironing clothes in such an unstable environment. [Start a new conversation, and clear the history] What\u2019s happening in the scene? The image depicts a man standing on top of a yellow SUV in a busy city street. He is holding a portable ladder, seemingly ironing clothes while standing on the vehicle. Around the scene, there are other cars, a traf\ufb01c light, and a \ufb01re hydrant. Additionally, there are two other people in the vicinity, one close to the man on the car and another further away. The man on the ladder appears to be attracting attention due to his unconventional choice of ironing his clothes on top of a moving car. The city street around him is bustling with activity, adding to the unique nature of the scene.\n\nUser LLaVA\n\nUser LLaVA\n\nUser What\u2019s happening in the scene?\n\nUser GPT-4 [36]\n\nWhat is unusual about this image? The unusual thing about this image is that a man is ironing clothes on an ironing board attached to the roof of a moving taxi.\n\nUser What is unusual about this image?",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 5,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "2aad7b48c03be4def9c479b126b986b9",
+    "text": "User BLIP-2\n\nWhat is unusual about this image? a man is sitting on the back of a yellow cab\n\nWhat is unusual about this image? User OpenFlamingo The man is drying his clothes on the hood of his car.\n\nTable 3: Example prompt from GPT-4 paper [36] to compare visual reasoning and chat capabilities. Compared to BLIP-2 [28] and OpenFlamingo [5], LLaVA accurately follows the user\u2019s instructions, instead of simply describing the scene. LLaVA offers a more comprehensive response than GPT-4. Even when merely asked to describe the image, LLaVA identi\ufb01es atypical aspects of the image.\n\nSurprisingly, although LLaVA is trained with a small multimodal instruction-following dataset 80K unique images), it demonstrates quite similar reasoning results with multimodal GPT-4 on ( \u21e0 these examples. Note that while these images are out-of-domain for LLaVA, LLaVA is still able to understand the scenes and follow the question instruction to provide a reasonable response. In contrast, BLIP-2 and OpenFlamingo focus on describing the image, instead of following the user instruction to answer in an appropriate manner.\n\nQuantitative Evaluation. To gain a systematic understanding of the performance of LLaVA, we propose a quantitative metric to measure the model\u2019s instruction-following capability on multimodal data. Inspired by [9], we leverage GPT-4 to measure the quality of generated responses. Speci\ufb01cally, we create triplets consisting of image, ground-truth textual descriptions, and question. The candidate models (e.g., LLaVA) predict the answers based on the question and the image. To provide an approximate theoretical upper bound, we create a reference prediction based on the question and the ground-truth textual descriptions, using the text-only GPT-4. After obtaining the responses from both models, we feed the question, visual information (in the format of textual descriptions), and the generated responses from both assistants, to the judge (i.e., text-only GPT-4). It evaluates the helpfulness, relevance, accuracy, and level of detail of the responses from the assistants, and gives an overall score on a scale of 1 to 10, where a higher score indicates better overall performance. It is also asked to provide a comprehensive explanation for the evaluation, for us to better understand the\n\n6",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 6,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "Table",
+    "element_id": "0cfd22922384aa1f4cf6b065a04e1fc4",
+    "text": "Conversation Detail description Complex reasoning All Full data Detail + Complex Conv + 5% Detail + 10% Complex Conversation No Instruction Tuning 83.1 81.5 (-1.6) 81.0 (-2.1) 76.5 (-6.6) 22.0 (-61.1) 75.3 73.3 (-2.0) 68.4 (-7.1) 59.8 (-16.2) 24.0 (-51.3) 96.5 90.8 (-5.7) 91.5 (-5.0) 84.9 (-12.4) 18.5 (-78.0) 85.1 81.9 (-3.2) 80.5 (-4.4) 73.8 (-11.3) 21.5 (-63.6)",
+    "metadata": {
+      "last_modified": "2024-07-13T15:40:36",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "page_number": 7,
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "orig_elements": "eJydU01r3DAQ/StCUOjSrCxZlqzNLaQUCqEUmvayBCPL8katbRlLbhNC/ntH2k1CaE692Jr35uPNaLR/wHawo51i4zp8jjA1fVeWu7LkqtKa9ZXpZUul0LSyrDcVPkN4tFF3Omrwf8DG+6Vzk442ZHvQ936Nza11h9sISFlSCjEn+I/r4i2grM7o7N0UU9x+z1lF2BkqaUn4zRl6srk62YwrRvgbwDECEBzuQ7Rj6uKru7PDt1kbix+BSGKb4NcF7KQRbNuYxcIvN83qkiohKy5JLZncMY6PUbYZfed694YbF1Q8e82LNzaEZzdGQZyqCROci5xstsvoQnB+Cs1pdvsHDNmTIs6ZUo+phcUaGGczeKOjX7LYWeeJ4eJ7sEsoohmsLSYfbev9r1CM6xBdkqmHZtGHIiUv3DSvcdt5E4qrK/3jYhvWNthI5q7Hj3kiNloTQU1jBh1CaqCFIpTAzUvgezfYpnMgB2Tc/395fMo16TE1iv9Rc+Lj/Zx5Pc+Dg95BWXGi3agPMOHTFE75DzbELSwU1CmyAyjT7WC39ZaRn/MB55WbDmui0qyxnQ74JqMhvrpV2J9qSyGOXzNxXtFzLvOFparTOrY2XUOdkeXlnXAp+l4Zrbu655VohTKVkNyWjNWtak3eu2jv0hPAl376DcPLbaGP8HrcgDobzOLmDF36cR7sHYKNDH6C7tDFMKBPK3xSv08hH54dU0IwxbsXitF3r+jnel88+jyFuKz5vtH1mgsoThiCByTQe5iY3KQzhXNJ2AbVMuMy4WWZcckyIQhHNYdP8qQbJBWp4FwnUuyIStkkKSGsymECnugG7VK+Hc20IDUAx8IipVAV2aWwklQbxFQmapUZcdSYaJ6SKprZKnmCilwtFyiP+SQHxenyntbpOu0Efrz5C9bXbPk="
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "587092234bdd91aab0bb842f18636c5c",
+    "text": "Table 4: Ablation on LLaVA-Bench (COCO) with different training data. We report relative scores w.r.t. a text-only GPT-4 model that uses ground truth image captions and bounding boxes as visual input. We prompt GPT-4 with the answers from our model outputs and the answers by GPT-4 (text-only), and let it compare between both responses and give a rating with an explanation.",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 7,
+      "orig_elements": "eJydk01r3DAQhv+K0CmBrNey/LW5pTn0EtpA0/awBCPJ411RWzKS3M0S8t870m7SluZUMAjN5zPvyNtnCiNMYEKne3pNaNU2+aYoeCn7fsOEkLmUbVkMrK15rSpFrwidIIheBIHxz1RZ63ptRACf7qM42iV0e9C7fUBLUeQ55pzNB92HPVpZk6yz1SbEvO222FRZcUV4PB6vyOu9Yjxr452VeZ2xdwynDLRQf/QBpjjFvX6C8cssFNAXdETYztvF4T0y4h065QCPNDRriryt6pLXWVOzesM4PWVBN9leD/qdMF7l1VvU7KwC79/CWM5b1jYZqzivUrEZ3KS919b47qzd9pli9UjEOWvblziCA4VydqNVIliXYGeRFKPrrx6cXwc1AqyNDSCt/eHX0zIGHTHF2DmxW8fia23mJax6q/z67k58u1n5RXoI2dwP9CUpAgFUQJpOjcL7OIDEJnm2Keq2wYBBj9D1GnmQ4/j//em5lhFTnJT+g3P2h+Oc/GKeR43DI9r67B6F2S1il97XloLZ0cdk9eGv7RR5Ua7yZsX4A6uuy/ya10l4zOzMMkmIcjbJ4n6/d15Xw9AqIfpm4GUlq1aVVc2hYKyRrVTp/QR4ik+ZPgg5AimvyY0cEyLB7zTRBzBqTy5uP99+viQHHfYEyQaInUhwQhttdiRqk5HvQBzM1gU8YpmfQDxuHTw5ZC4LGREkNlxZMx7Jx/uHVUniOxlJ2ItAFo+BO2cX02PhBRvpCUckSsyRyBOBDhndsaO0TxguPPmp/SJGkhaTEHDj0xzO9RNw2AMm+wNumQzoJfjDnDvjr4t5p9p/hslXwIs34surFIUbJToQhU1QbiIhHAAM8mAjHHVGUjjV20UBBHGoBAInEmEIPM249yRyFtf4+j4+CeeSZg9xJy+PvwDs7ocS"
+    }
+  },
+  {
+    "type": "Table",
+    "element_id": "9849828366ad61f0c0c65510adfa7740",
+    "text": "Conversation Detail description Complex reasoning All OpenFlamingo [5] BLIP-2 [28] LLaVA LLaVA\u2020 19.3 54.6 57.3 58.8 0.5 1.4 1.9 0.6 19.0 29.1 52.5 49.2 0.5 1.2 6.3 0.8 19.1 32.9 81.7 81.4 0.7 0.7 1.8 0.3 19.1 38.1 67.3 66.7 0.4 1.0 2.0 0.3",
+    "metadata": {
+      "last_modified": "2024-07-13T15:40:36",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "page_number": 7,
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "orig_elements": "eJydU0tv1DAQ/iuWz93Ej/iR3koRElIlKlG4LKvISZytIYmj2AtdVf3vjN20CNETBzuZmW9mvnl4/4jtaCc7x8b1+BLhWle1ZppLaXpJB9KRTgpBiekHo1RF8AXCk42mN9EA/hF33q+9m020IcujOftTbO6tO95H0DBGCPhs6l+uj/egpSprF+/mmPz2e67qgl4gIaqiPlygF1kRWegkU87Im4pnD9DgcA7RTqmKW/dgx8+L6Sx+AkMi2wR/WkFOHEG2Tbda+OSiqWJEC1lxWShJZU05fvayzeR7N7g3YFwQ8YpaVt/ZEF5hlHBNtSqo4FzkYItdJxeC83Nott7tHzFET4w4p1o/pRJW20E7m9F3Jvo1k11M7hguvwS7hjJ2o7Xl7KNtvf8Ryuk0RpdomrFZzbFMwUs3L6e4630Xypsb8/VqF05tsLFY+gE/5Y7YaLsIbJpuNCGkAlpIQgqttGYAGNxom94BH+Bx/v/8eIs1mylViv+hs9njecl2syyjg+KBWrmZ3WSO0OKtDVv8ow1xBxsFecoMAGamHe1O7VjxfTnivHPz8ZRMqdnYzkd8yNoQ/xorI6zaEbWj/I6Ky4pccpknlrLOp6m1aQ4qa9Y/D4VLMQy6M6ZXA69EK3RXCckto1S1uu3y4kX7kN4AvvbzT2heLgu9h+fjRtTb0K1uyaprPy2jfUCwksHPUB26Gkf0abHzh9FMIHu0Fwf07ubj7Y6hPdMHlBv5fH87QQkE0brgCB6DREKlP11oGKhAtKjg1PAvE4YgBi8LCQamqi7YhmFIghMsQMJQxBl4aFqodFWgV/nQHJNvGA2XTLmkzPaUB8LDAUzq4ctU79Jo8NPhN3xgTis="
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "659b79e5a67dea3cdfa5c22882cf4942",
+    "text": "\u00b1 \u00b1 \u00b1 \u00b1\n\n\u00b1 \u00b1 \u00b1 \u00b1\n\n\u00b1 \u00b1 \u00b1 \u00b1\n\n\u00b1 \u00b1 \u00b1 \u00b1\n\nTable 5: Instruction-following capability comparison using relative scores on LLaVA-Bench (In-the- Wild). The results are reported in the format of mean std. For the \ufb01rst three rows, we report three inference runs. LLaVA performs signi\ufb01cantly better than others. \u2020 For a given set of LLaVA decoding sequences, we evaluate by querying GPT-4 three times; GPT-4 gives a consistent evaluation.\n\nmodels. We report relative scores w.r.t. the text-only GPT-4 model that uses the textural ground truth description as visual input. We create two benchmarks to evaluate the model\u2019s performance.\n\nLLaVA-Bench (COCO). We randomly select 30 images from COCO-Val-2014, and for each image, we generate three types of questions (conversation, detailed description, complex reasoning) using the proposed data generation pipeline in Sec. 3, totaling 90 questions. This benchmark studies the model\u2019s alignment behavior and capabilities with consistent visual inputs. We vary the training datasets to study the effectiveness of different types of instruction-following data, and show the results in Table 4. First, with instruction tuning, the model\u2019s ability of following user instructions improves signi\ufb01cantly by over 50 points. Second, adding a small amount of detailed description and complex reasoning questions contributes to a considerable improvement of the model\u2019s overall capability by 7 points. Furthermore, it also improves the model\u2019s performance on conversational questions, suggesting that improvements in reasoning capabilities complement conversational abilities. Finally, we show that having all three types of data yields the best performance at 85.1%.\n\nLLaVA-Bench (In-the-Wild). To evaluate the model\u2019s capability in more challenging tasks and generalizability to novel domains, we collect a diverse set of 24 images with 60 questions in total, including indoor and outdoor scenes, memes, paintings, sketches, etc., and associate each image with a highly-detailed and manually-curated description and a proper selection of questions. We compare LLaVA, BLIP, and OpenFlamingo in Table 5. Thanks to visual instruction tuning, LLaVA achieves signi\ufb01cantly better performance compared with BLIP-2 (+29%) and OpenFlamingo (+48%). Compared to the text-only GPT-4 that has access to ground-truth labels, LLaVA achieves an impressive 81.7% performance on complex reasoning questions, with an overall score of 67.3%.\n\nLimitations. This LLaVA-Bench (In-the-Wild) is designed to be challenging and to reveal a model\u2019s weaknesses. We provide two examples with associated captions and questions in Table 6. For the ramen example (left), to correctly answer the name of the restaurant, it requires the model to have a large knowledge coverage and multilingual understanding capability; to correctly describe the side dishes, the model may need to retrieve relevant multimodal information from Internet. For the fridge example (right), perceiving the correct brand of the yogurt requires the model to process high resolution images and possess extensive knowledge coverage. We also observed an interesting failure of LLaVA, as it responds with yes when asked if strawberry-\ufb02avored yogurt is present, even though the fridge contains only yogurt and strawberries. This indicates that, at times, LLaVA perceives the image as a \u201cbag of patches\u201d, failing to grasp the complex semantics within the image. We hope LLaVA serves as a solid baseline on the benchmarks, on which our \ufb01ndings can inspire future work in developing more capable LMMs.\n\n7\n\nChallenging examples from LLaVA-Bench (In-the-Wild):",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 7,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "55c9636834b98e0cd13f2537cdda4723",
+    "text": "ICHIRAN Ramen [source]\n\nFilled fridge [source]\n\nAnnotation A close-up photo of a meal at ICHI- RAN. The chashu ramen bowl with a spoon is placed in the center. The ramen is seasoned with chili sauce, chopped scallions, and served with two pieces of chashu. Chopsticks are placed to the right of the bowl, still in their paper wrap, not yet opened. The ramen is also served with nori on the left. On top, from left to right, the fol- lowing sides are served: a bowl of or- ange spice (possibly garlic sauce), a plate of smoke-\ufb02avored stewed pork with chopped scallions, and a cup of matcha green tea.\n\n\u2014 _\n\n_\n\n__ _\n\n_\n\nAn open refrigerator \ufb01lled with a variety of food items. In the left part of the compartment, towards the front, there is a plastic box of strawberries with a small bag of baby carrots on top. Towards the back, there is a stack of sauce containers. In the middle part of the compartment, towards the front, there is a green plastic box, and there is an unidenti\ufb01ed plastic bag placed on it. Towards the back, there is a carton of milk. In the right part of the compartment, towards the front, there is a box of blueberries with three yogurts stacked on top. The large bottle of yogurt is Fage non-fat yogurt, and one of the smaller cups is Fage blueberry yogurt. The brand and \ufb02avor of the other smaller cup are unknown. Towards the back, there is a container with an unknown content.\n\nQuestion 1 What\u2019s the name of the restaurant?\n\nWhat is the brand of the blueberry-\ufb02avored yogurt?\n\nQuestion 2 Describe this photo in detail.\n\nIs there strawberry-\ufb02avored yogurt in the fridge?\n\nTable 6: Challenging examples from LLaVA-Bench (In-the-Wild), we provide extremely-detailed annotation for each image for an accurate evaluation. Some questions require the model to extract details from high resolution image and to have a broad knowledge coverage.",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 8,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "4f4f9a981078bf131e425c18674a8995",
+    "text": "5.2 ScienceQA\n\nScienceQA [34] contains 21k multimodal multiple choice questions with rich domain diversity across 3 subjects, 26 topics, 127 categories, and 379 skills. The benchmark dataset is split into training, validation, and test splits with 12726, 4241, and 4241 examples, respectively. We consider two representative methods, including GPT-3.5 model (text-davinci-002) with and without chain- of-thought (CoT), LLaMA-Adapter [59], as well as multimodal chain-of-thought (MM-CoT) [61], which is the current SoTA method on this dataset. For more baseline numbers, please see [34].\n\nThe results are reported in Table 7. For LLaVA, we use the visual features before the last layer, ask the model to \ufb01rst predict reasons and then the answer, and train it for 12 epochs. It yields 90.92% accuracy, which is quite close to the SoTA 91.68%. To explore the limit of LLMs, we also prompt GPT-4 using 2-shot in-context-learning and achieve 82.69% accuracy, which is a 7.52% absolute gain compared with 75.17% from GPT-3.5. For a substantial number of questions, we note that GPT-4 fails simply because it reports that there is insuf\ufb01cient context such as images or plots. We consider two schemes to combine the outcomes from our model and GPT-4. (i) A GPT-4 complement. Whenever GPT-4 fails to provide answers, we use the prediction from our method. This schemes yields 90.97% accuracy, which is almost the same as applying our method alone. (ii) GPT-4 as the judge. Whenever GPT-4 and LLaVA produce different answers, we prompt GPT-4 again, asking it to provide its own \ufb01nal answer based on the question and two outcomes. The spirit is similar with CoT, but with the external knowledge from the other model. Surprisingly, this scheme is able to provide consistent improvement over all question classes, and achieves a new SoTA accuracy of 92.53%. Interestingly, the text-only GPT-4, which cannot process images, improves the overall performance of the model on questions that have an image as context. This is because some of these questions do not actually require the image context for a correct answer. The GPT-4 judge can identify such cases and correct some of the errors that LLaVA makes. See the example in Appendix. To the best of our knowledge,\n\n8",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 8,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "Table",
+    "element_id": "ab00cb9f3cd50a91533d72742232b194",
+    "text": "Method NAT Subject SOC LAN Context Modality IMG TXT NO Grade G1-6 G7-12 Average Representative & SoTA methods with numbers reported in the literature 90.23 Human [34] 74.64 GPT-3.5 [34] 75.44 GPT-3.5 w/ CoT [34] 84.37 LLaMA-Adapter [59] 87.52 MM-CoTBase [61] 95.91 MM-CoTLarge [61] 84.97 69.74 70.87 88.30 77.17 82.00 87.48 76.00 78.09 84.36 85.82 90.82 89.60 74.44 74.68 83.72 87.88 95.26 87.50 67.28 67.43 80.32 82.90 88.80 88.10 77.42 79.93 86.90 86.83 92.89 91.59 76.80 78.23 85.83 84.65 92.44 82.42 68.89 69.68 84.05 85.37 90.31 88.40 73.97 75.17 85.19 84.91 91.68 Results with our own experiment runs GPT-4\u2020 LLaVA LLaVA+GPT-4\u2020 (complement) LLaVA+GPT-4\u2020 (judge) 84.06 90.36 90.36 91.56 73.45 95.95 95.50 96.74 87.36 88.00 88.55 91.09 81.87 89.49 89.05 90.62 70.75 88.00 87.80 88.99 90.73 90.66 91.08 93.52 84.69 90.93 92.22 92.73 79.10 90.90 88.73 92.16 82.69 90.92 90.97 92.53",
+    "metadata": {
+      "last_modified": "2024-07-13T15:40:36",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "page_number": 9,
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "orig_elements": "eJydVNtu4zYQ/ZWBHoouuqZ5kXjJm7sPaYE4u9i4RQE3MGSJsZVaF4jUJkGQf98ZWklbNE99GYkzhzNnzpDcPmf+5FvfxV1TZxeQlXvOq727U1Vd8NKJQqnaSJNLqeReuDz7CFnrY1mXsUT8c1b1/Vg3XRl9SOtT+dRPcXf0zeEY0SMl57hndj80dTyiV5jkHfqmi7Rvu1VCMPsRJFdM336E17UWnClai5wbxt9xnHegJwtPIfqWuvjSPPrTzVBWPnvBAJHdhX4acU0cce131ejxk5oWRnJb6FxpZrTQTqjsvMvv2r5u7pp3YKrgxRtqGPvKh/AGE1xZYQ0j+YqUbPBj24TQ9F3YzdptnzPMToyUEta+UAujr1DO3amvytiPiexQJsWy5W/Bj2EZq5P3y66Pft/3f4VlO51iQzTL024sD0tKvmy6YYqLuq/C8uqq/H21CNM++MiG+i57SYr46KuIbHbVqQyBGthjEc6c1Eoj4K45+V3dIB/k8fT/62dzrq5sqdPsP3TmeHwaUrwchlODzSO15Rxu2vKAEs8yzPkPPsQFniiss0wAZFbuT37hFordD4csnbnuMFGIxM58d8hukzfEf41VcpkvuFkItRHFRc4vlE4To6rd1O49zcGRatE/0pHO1j4e+xquVxu4mfb3qBHcfP4EV6tr+NR3hII1CdLEJ/h1fQmbPzZw/Rkux7L2cCkWGi6xnITVN4+Sefjqh9EHvITY9zcPP8BNv1lBm6oEeGjiEc5EAox+6Ec8ttB0EI8esAbmiNPowXEmFfwytWWH1ye/BZMzncPllw1KUsyuguV/ux6WyHdzjticKQM4nvVqsarLAdPCtnAYMKyQsF4vEPpzGTxstbgFVzAnZu9VOR5mN2ZxBrRjJgfDmTVgLVMcDN4F/JeMc0qYWzCa/o1l3KXaGmzBrKQu0FrHNKcGkC21YcEqZiTttZaKS52IcdCGSUs2V2DxaZBUxXGqa5MVqXouwTjmEKNTVDOrwElmHTjBCkd8bOKDGhITRax0QRjkgDkxg7aEx+6IT854QUhUDTkrQbVyzKBIAdSZ+kWbukOpsAru+uoD3pd5pvggQf/QgX/E16GhRxjGqQtpPPmfE55LDum+nO1P//T/WPXtcH65P7wXvp/qg/+QWOrE781it5pY5kUaYrKoo9M0M9SUJmHTnCwrCsLThESapWO5I4udYzYtacameMWbWXHnKGpUwqSKHGem6BiRpinqkvpSkkUkzgbnRP6UwaSo0KT7jE8nA5VF//lFfX0xNnTts5fb7xY126I="
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "1deed8ca93d137e3701023b1b87fd5c0",
+    "text": "Table 7: Accuracy (%) on Science QA dataset. Question categories: NAT = natural science, SOC = social science, LAN = language science, TXT = text context, IMG = image context, NO = no context, G1-6 = grades 1-6, G7-12 = grades 7-12. \u2020Text-only GPT-4, our eval. Our novel model ensembling with the text-only GPT-4 consistently improves the model\u2019s performance under all categories, setting the new SoTA performance.\n\nthis is the \ufb01rst time that GPT-4 is used for model ensembling. We hope this \ufb01nding can encourage future research to explore more effective methods to leverage LLMs for model ensembling.\n\nAblations. We ablate several design choices on ScienceQA in Table 8. (i) Visual features. We tried using the last layer feature from CLIP vision encoder, which yields 89.96% and is 0.96% lower than the feature before the last layer. We hypothesize that this is because CLIP\u2019s last layer features may focus more on global and abstract image properties compared to the layer before it, which can focus more on localized properties that are useful for under- standing speci\ufb01c image details. (ii) Chain-of-thought. To decide the order between the answer and reasoning process in the model prediction, we run both variants and observe that answer-\ufb01rst reports the best number 89.77% accuracy in 12 epochs, while reasoning-\ufb01rst can quickly reach 89.77% accuracy in 6 epochs, but no further improvement with more training. Training the model for 24 epochs does not improve the performance. We conclude that CoT-like reasoning-\ufb01rst strategy can largely improve convergence, but contributes relatively little to the \ufb01nal performance. (iii) Pre-training. We skip pre-training and directly train on Science QA from scratch \u2013 performance drops to 85.81% accuracy. The 5.11% absolute degradation indicates the importance of our pre-training stage, in aligning multimodal features while preserving the vast pre-trained knowledge. (iv) Model size. We keep all con\ufb01gurations the same as our best 13B model, and train a 7B model. This yields 89.84% accuracy, which is 1.08% lower than 90.92%, demonstrating the importance of model scale.",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 9,
+      "orig_elements": "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"
+    }
+  },
+  {
+    "type": "Table",
+    "element_id": "b7864fc8b0441a233eb0c373b3031991",
+    "text": "Visual features Before Last Best variant Predict answer \ufb01rst Training from scratch 7B model size 90.92 - 85.81 (-5.11) 89.84 (-1.08) 89.96 (-0.96) 89.77 (-1.15) - -",
+    "metadata": {
+      "last_modified": "2024-07-13T15:40:36",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "page_number": 9,
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "orig_elements": "eJydUrtu3DAQ/BWCVQxYFKm33MW1CwNx0lwMgaJWOiaSKJBU7Itx/54lfTYQxFWa083sa3a4hxcKMyyw+k4P9IZQ0eeV7ItRjC3PxrGvhlG1JeeqLtuxKAZ6TegCXg7SS8x/ocoYO+hVenARz/Jkdt8dQU9Hj0yWcY41F/pJD/6IrKgjuxm9+lB3ODRVzapr0oqSZY/X5A0LXpesCITI64y1HzGvNchQd3IelrDHvX6G+csmFdAzBoLczpndIg4qEUOnLODnde06401ZFXnF6kpUrcjpaxV0ixn0qD9Iy0tevmdt1ihw7j1N8LwRTc1EmedlbLaBXbRz2qyuu7h3eKHYPSjKc9E057CCBYWGdrNR0hsbxW4yekbTrw6sS72aAdLVeOiN+enSZZ+9DjLl3Fk5paF5qtdt98lglEvv7uS3z4nbeweebcNIz9ER8KA8qunULJ0LC/Q4hLOm5iUaT0c9Qzdo1IM6Tv8/n156rXIJm9J/5Fzi/rTFuNy2WePyKC29hPUiJ7T4YsOl/wTOJ3hTOCeNCahM9jMkbVKwH9tE49Wt0x5CwWwK60QfI+v8X8+a8axIeJ2I/EGUNwW/yav4YmHqui89hHdog2sensNR02/a7XImIx7QbsGRWxiNBXKHnfE//vySVsvVk3sLg1aeyNU9gSXf97HnwmLCg5V6xS3IaM1CnLLSqyOpb0m4iJk4/RtIy1mbkYQ0JWsE+ZSUTIgr0rSsKRAJxpuI2goRplYR1XWMifIKK5Owx5uzD8Eeen78Ay6PNrw="
+    }
+  },
+  {
+    "type": "CompositeElement",
+    "element_id": "c4789b12ba081e26af6695a35e0df3b9",
+    "text": "6 Conclusion\n\nThis paper demonstrated the effectiveness of visual instruction tuning. We presented an automatic pipeline to create language-image instruction-following data, based on which we train LLaVA, a multimodal model to follow human intent to complete visual tasks. It achieves the new SoTA accuracy when \ufb01ne-tuned on ScienceQA, and excellent visual chat capabilities when \ufb01ne-tuned on multimodal chat data. Besides, we present the \ufb01rst benchmark to study multimodal instruction- following capability. This paper is an initial step in visual instruction tuning, and mainly focuses on real-life tasks. For more quantitative results of LLaVA on academic benchmarks, please refer to the improved baselines with visual instruction tuning [32]. We hope our work can inspire future research on building more capable multimodal models.\n\nAcknowledgements. We thank Baolin Peng and Pan Lu for valuable discussions on instruction-tuning language models and Science QA, respectively. We thank the LLaMA team for giving us access\n\n9",
+    "metadata": {
+      "data_source": {
+        "record_locator": {
+          "path": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs/LLaVA-subset.pdf"
+        },
+        "date_created": "1720856436.7616913",
+        "date_modified": "1720856436.763505",
+        "date_processed": "1721038187.153353",
+        "permissions_data": [
+          {
+            "mode": 33188
+          }
+        ]
+      },
+      "file_directory": "/Users/tclee/notebooks/multi_modal_rag/data/input-docs",
+      "filename": "LLaVA-subset.pdf",
+      "filetype": "application/pdf",
+      "languages": [
+        "eng"
+      ],
+      "last_modified": "2024-07-13T15:40:36",
+      "page_number": 9,
+      "orig_elements": "eJztVk2P2zYQ/SuEzmtZ1Lf2tilQoEBapMimPWwXxogaWcRSpCpS67hB/nuGlHfrNs4hRXIp9mJbI87wvZl5M777EKHCEbXbyS66ZlHSZ0XNRZfmkBZtl/ciydO8brOGCyxLiK5YNKKDDhzQ+Q+RMGbupAaHNjwrOJrF7QaU+8GRJU2ThHxO5oPs3EBWXgXrZKR23u/uLm3qOL1ivGiKuLy/Ys+GMm3i1BsKzuPykmF1IUtkj9bh6Hm8ke9RvZ1AYPSRXni4O2uWmZ49SnrGnZiRvgJtXqVJXZR5VsZVycuGZ9HqhbvRdLKXF45lRVI8n5pmI9Da52M8yWpeVzEvsqwIwSacR2mtNNruTtm7+xBRdI8oy3hdf/QUZhSU0J0yApyZA9gJQs6i7TuLs906oRC32jhsjXmw23FRTnqYoHYz7Lc++FbqaXGbzgi7ff0afrvZ2KW16OKp66OPISPoUDhCsxMKrPUEWrokieumSCjvUS8V7jpJeAjH8b/fH51iaRg90+gzOKf37jiF9zBNShJ5grY9vVag9wvsQ4fdRaj30X2wWveP6qRJmm+SasOzW15c58l1VobEk+dOL2OLPp2NJ+/wve/NqGQ/GC3U4qvijz5huJVOhcb5tzyQCtt1nUgF8Jq0wWuosQJSTJb2SZ98R3k0MffNX/I4X+WxGpqMx4038Dyp4uyiZXV6Eci3EUhT8LL6HwskWOavWAnnirodpGUTUC1ZhyOV0s2+hZgbkGHf+4w+oqZGYKZnj9IuoJj0p5aQa+YWLfU+Zr8jm2a0hIKcQTNYnBmJs2CTnFBJjcwZtjYoe6K/kSN9nsfb9EYpc6CQzGf9irVALcjoosMgxcAOFGYGqVlI+hUDFooVasV86yl/zRqEDctISEiShCrcbsaJyoJPPBzYBxuznxwDMUh8RBtoazywt+b2hqximUEc6W7U7I+lbxOucUOUV0hvhUQt8FePQ3cM3wtUyt91ii8GcEzABK1U0kkK/4VAZxyCj6ces1doZYf2ypM+5TbgW/1n61hL1w8jzA+enXVLdzwPdZ5W9ndenwEdY3ZWffoRkkVAyZemzkQPX674SnmkUqgjBReLJXr0lgqsNkr2+JTdH81MhZmR/bmAdtKBbyg6ZgloaKpQSe8KAqgFqWOeaRF3Khh1AJ3vCSOx9AmQI2n7kVLnm8O3FiVWuuHLYNldlt6HHh3MhIymJjsYypoIjO1EM4H1i1vmAAxhpk4j53aRqvPuAX/Im8LPGs7G55voF5jnQPHWC+zCRoKqwjJJmwKSvm6qOishyZqsybOmz7IWv+NGSuPGr5u8iet1IwUDuVergfZPE1eXLCenl430jTZSllXly0a6vJFuxIM2B4XdPsjGBt26AfQDewWG5M7eELwwft6Qfl8vNH5m9ghqCfLspKVhFHrAa/h8CJ6GwRPVk3xDpNMoZ36W0wiY1r2njmeX+8lDif35hjmEMVy6l48+4GL9qqDW/KpB0NZQCeSIbYEFT6Bv+j7hfQI1lNjk/XcbBHWe+X+iaVLSt1f5s6FJVtmT/tbJ8JkhuLyMga8aAy8qv6Dy5lwr7zTBxL2Z5V/YrXq5/wQ9Bm1F"
+    }
+  }
+]
