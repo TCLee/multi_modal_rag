@@ -6,11 +6,17 @@ dependencies:
   - jupyterlab=4.2.*
   - ipywidgets=8.1.*
   - python-dotenv=1.0.*
+
+  # --- langchain ---
+  - langchain=0.2.*
+  - langchain-google-genai=1.0.*
+  - langchain-chroma=0.1.*
+  
   # --- unstructured ---
-  - libmagic=5.39
+  - libmagic=5.39.*
   - poppler=24.04.*
   - tesseract=5.4.*
-  # --- unstructured ---
+
   - pip=24.0.*
   - pip:
     - -r requirements.txt
