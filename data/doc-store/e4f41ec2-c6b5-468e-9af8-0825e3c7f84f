@@ -1,0 +1,17 @@
+• Conversation. We design a conversation between the assistant and a person asking questions about this photo. The answers are in a tone as if the assistant is seeing the image and answering the question. A diverse set of questions are asked about the visual content of the image, including the object types, counting the objects, object actions, object locations, relative positions between objects. Only questions that have deﬁnite answers are considered. Please see Appendix for the detailed prompt.
+
+• Detailed description. To include a rich and comprehensive description for an image, we create a list of questions with such an intent. We prompt GPT-4 then curate the list (see detailed prompts
+
+3
+
+and curation process in Appendix). For each image, we randomly sample one question from the list to ask GPT-4 to generate the detailed description.
+
+• Complex reasoning. The above two types focus on the visual content itself, based on which we further create in-depth reasoning questions. The answers typically require a step-by-step reasoning process by following rigorous logic.
+
+We collect 158K unique language-image instruction-following samples in total, including 58K in conversations, 23K in detailed description, and 77k in complex reasoning, respectively. We ablated the use of ChatGPT and GPT-4 in our early experiments, and found that GPT-4 consistently provides higher quality instruction-following data, such as spatial reasoning.
+
+4 Visual Instruction Tuning
+
+4.1 Architecture
+
+The primary goal is to effectively leverage the capabilities of both the pre-trained LLM and visual model. The network archtecture is illustrated in Figure 1. We choose Vicuna [9] as our LLM f( ) · parameterized by , as it has the best instruction following capabilities in language tasks among publicly available checkpoints [48, 9, 38].
