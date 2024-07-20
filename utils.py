@@ -5,12 +5,16 @@ here to avoid cluttering the notebook.
 
 """
 
-from os import PathLike
-
 import base64
 import json
+import uuid
+
+from os import PathLike
 
 from IPython.display import HTML, display
+
+from langchain_core.documents import Document
+
 
 def write_to_json(summaries: list[str], json_path: str):
     """
@@ -50,6 +54,53 @@ def read_from_json(json_path: str) -> list[str]:
         return json.load(f)
     
 
+def generate_random_ids(
+    count: int
+) -> list[str]:
+    """
+    Generates a list of random UUID.
+
+    Args:
+        count: Number of random UUID to generate.
+
+    Returns:
+        List of random UUID with `count` elements.
+        
+    """
+    return [
+        str(uuid.uuid4()) 
+        for _ in range(count)
+    ]
+
+
+def create_documents_from_texts(
+    id_key: str,
+    texts: list[str],
+    doc_ids: list[str],
+) -> list[Document]:
+    """
+    Creates a LangChain `Document` object for each text content.
+
+    Args:
+        id_key: Key for the document ID value.
+        texts: List of text contents.
+        doc_ids: List of unique IDs for each document.
+
+    Returns:
+        List of LangChain `Document` objects.
+    
+    """
+    return [
+        Document(
+            page_content=text, 
+            metadata={
+                id_key: doc_ids[index]
+            }
+        )
+        for index, text in enumerate(texts)
+    ]
+
+
 def encode_image(
     image_path: PathLike
 ) -> str:
@@ -72,7 +123,7 @@ def encode_image(
         ).decode("utf-8")
 
 
-def plt_img_base64(image_base64: str):
+def plot_image_base64(image_base64: str):
     """
     Display base64 encoded string as image
 
