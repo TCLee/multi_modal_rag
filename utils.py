@@ -8,8 +8,10 @@ here to avoid cluttering the notebook.
 import base64
 import json
 import uuid
+import re
 
 from os import PathLike
+from typing import TypedDict
 
 from IPython.display import HTML, display
 
@@ -134,4 +136,88 @@ def plot_image_base64(image_base64: str):
     # Display the image by rendering the HTML
     display(
         HTML(image_html)
+    )
+
+
+def looks_like_base64(string: str):
+    """
+    Check if the string looks like base64
+
+    """
+    return re.match(
+        "^[A-Za-z0-9+/]+[=]{0,2}$", string
+    ) is not None
+
+
+def is_image_data(
+    base64_data: bytes
+) -> bool:
+    """
+    Check if the base64 data is an image by 
+    looking at the start of the data
+
+    """
+    image_signatures = {
+        b"\xff\xd8\xff": "jpg",
+        b"\x89\x50\x4e\x47\x0d\x0a\x1a\x0a": "png",
+        b"\x47\x49\x46\x38": "gif",
+        b"\x52\x49\x46\x46": "webp",
+    }
+
+    try:
+        # Decode and get the first 8 bytes.
+        header = base64.b64decode(base64_data)[:8]
+
+        # If header starts with any of the above image
+        # signatures, then it is an image (True)        
+        for signature, _ in image_signatures.items():
+            if header.startswith(signature):
+                return True
+            
+        # Header not found in the image signatures,
+        # not an image (False).
+        return False
+    
+    except Exception:
+        # Failed to decode as Base64.
+        return False
+    
+
+class PromptContext(TypedDict):
+    """
+    Context that will be injected into the prompt 
+    and passed to the LLM.
+
+    Attributes:
+        base64_images: List of images encoded in Base64.
+        texts_or_tables: List of texts or tables. 
+            Tables are also represented as plain string.
+
+    """
+    base64_images: list[str]
+    texts_or_tables: list[str]
+
+
+def split_image_text_types(
+    retrieved_documents: list[bytes]
+) -> PromptContext:
+    """
+    Split base64-encoded images and texts
+
+    """
+    base64_images = []
+    texts = []
+
+    for doc_bytes in retrieved_documents:
+        doc_str = doc_bytes.decode()
+
+        if (looks_like_base64(doc_str) 
+            and is_image_data(doc_bytes)):
+            base64_images.append(doc_str)
+        else:
+            texts.append(doc_str)
+
+    return PromptContext(
+        base64_images=base64_images,
+        texts_or_tables=texts,
     )
