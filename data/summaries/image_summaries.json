@@ -1,7 +1,7 @@
 [
-    "A black SUV is parked in a garage with a person loading luggage into the back.  There are multiple bags and suitcases in the garage.  A second person is standing next to the car.  The garage is empty and has concrete walls.  There are multiple fire extinguishers on the wall.",
-    "Diagram of a visual question answering model that uses a language model and a vision encoder to answer questions about an image. The model takes an image and a question as input, and then uses the language model to generate a response. The response is then compared to the image using the vision encoder to determine the answer.  The image shows the different components of the model, including the language model, the vision encoder, the projection layer, and the attention mechanism.",
-    "A man is ironing a blue shirt while standing on the back of a yellow SUV. A yellow taxi is driving next to him.  The SUV has a large sticker on the back that says \"911.\"",
-    "A bowl of ramen with pork, noodles, and green onions. There is also a side dish of pork and green onions, a cup of green tea, and seaweed on the table.  The ramen is in a black bowl with a gold design.  The table is made of wood.",
-    "A refrigerator shelf with a container of baby carrots, strawberries, a container of blueberries, a container of yogurt, and a carton of milk."
+    "A black SUV is parked in a garage. Two people are loading luggage into the vehicle. There are several bags and suitcases on the floor. The garage is empty except for the car and the people.",
+    "Diagram illustrating a language model that takes an image and a language instruction as input and outputs a language response. The image is encoded by a vision encoder and projected into a lower dimensional space. The language instruction is encoded by the language model and then used to generate a response. The response is then projected into the same space as the image encoding and compared to the image encoding to determine the similarity between the two.",
+    "A man in a yellow shirt is ironing clothes on a yellow SUV taxi in the middle of the street, while a yellow taxi drives by in the background.",
+    "A bowl of ramen with pork, noodles, and green onions. There is also a side dish of green onions and a cup of green tea.  The meal is on a wooden table.",
+    "A refrigerator shelf with various food items including baby carrots, strawberries, blueberries, yogurt, and a container of milk."
 ]
