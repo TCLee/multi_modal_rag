@@ -16,6 +16,7 @@ from typing import TypedDict
 from IPython.display import HTML, display
 
 from langchain_core.documents import Document
+from langchain.storage import LocalFileStore
 
 
 def write_to_json(summaries: list[str], json_path: str):
@@ -54,7 +55,25 @@ def read_from_json(json_path: str) -> list[str]:
         mode='r', 
         encoding='utf-8') as f:
         return json.load(f)
-    
+
+
+def remove_all_documents_from_store(
+    document_store: LocalFileStore
+):
+    """
+    Removes all documents from the local document store.
+
+    Args:
+        document_store: The document store to remove the 
+            documents from.
+    """
+    all_document_ids = [
+        doc_id 
+        for doc_id 
+        in document_store.yield_keys()
+    ]
+    document_store.mdelete(all_document_ids)
+
 
 def generate_random_ids(
     count: int
