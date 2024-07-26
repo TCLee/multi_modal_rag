@@ -1,11 +1,20 @@
-# Extract Structured Data from Text
+# Multi-modal RAG
 
 ## Overview
 
-In the [notebook](extract_structured_data.ipynb), we will see how we can extract structured data from unstructured text. More specifically, we'll use Google's Gemini model to extract the lists of characters, relationships, things, and places from a short story.
+Many documents contain a mixture of content types, including text, tables, and images. 
 
-The code in the notebook is adapted from Google's 
-[Gemini tutorial](https://ai.google.dev/gemini-api/tutorials/extract_structured_data).
+Semi-structured data can be challenging for [conventional RAG](https://github.com/TCLee/rag-langchain) for at least two reasons:
+
+* Text splitting may break up tables, corrupting the data in retrieval.
+* Embedding tables may pose challenges for semantic similarity search.
+
+And the information captured in images is typically lost.
+
+With the emergence of more affordable multimodal LLMs, like [Gemini 1.5 Flash](https://ai.google.dev/gemini-api/docs/models/gemini#gemini-1.5-flash) and [GPT-4o mini](https://platform.openai.com/docs/models/gpt-4o-mini), it is worth considering how to utilize images in RAG.
+
+The code in this notebook is adapted from the 
+[LangChain cookbook](https://github.com/langchain-ai/langchain/blob/master/cookbook/Multi_modal_RAG.ipynb).
 
 
 ## Setup
@@ -14,7 +23,7 @@ The code in the notebook is adapted from Google's
 Clone this repository to your local computer by running:
 
 ```zsh
-git clone https://github.com/TCLee/extraction
+git clone https://github.com/TCLee/multi_modal_rag
 ```
 
 ### Conda
@@ -73,5 +82,5 @@ jupyter lab
 ```
 
 In Jupyter Lab, open the notebook 
-[`extract_structured_data.ipynb`](extract_structured_data.ipynb) 
+[`Multi_Modal_RAG.ipynb`](Multi_Modal_RAG.ipynb) 
 and follow the instructions there.
