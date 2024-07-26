@@ -17,6 +17,7 @@ from IPython.display import HTML, display
 
 from langchain_core.documents import Document
 from langchain.storage import LocalFileStore
+from langchain.retrievers.multi_vector import MultiVectorRetriever
 
 
 def write_to_json(summaries: list[str], json_path: str):
@@ -121,6 +122,51 @@ def create_documents_from_texts(
         for index, text in enumerate(texts)
     ]
 
+
+def add_documents(    
+    retriever: MultiVectorRetriever, 
+    summaries: list[str], 
+    raw_contents: list[str],
+):
+    """
+    Add summaries to the vector store and full raw 
+    contents to the document store of the multi vector 
+    retriever.
+
+    Args:
+        retriever: The multi-vector retriever.
+        summaries: List of summaries for the raw contents.
+        raw_contents: List of unsummarized (full) texts, 
+            tables, images (Base64 string).
+    """
+    # Generate a unique ID for each Document.
+    doc_ids = generate_random_ids(
+        count=len(summaries)
+    )
+
+    # Create a LangChain Document for each summary.
+    summary_docs = create_documents_from_texts(
+        id_key=retriever.id_key,
+        texts=summaries,
+        doc_ids=doc_ids
+    )
+    
+    retriever.vectorstore.add_documents(
+        documents=summary_docs
+    )
+
+    # Document store saves the contents as 
+    # bytes rather than string.
+    raw_contents_bytes = [
+        string.encode() 
+        for string in raw_contents
+    ]
+    
+    retriever.docstore.mset(
+        key_value_pairs=list(
+            zip(doc_ids, raw_contents_bytes)
+        )
+    )
 
 def encode_image(
     image_path: PathLike
