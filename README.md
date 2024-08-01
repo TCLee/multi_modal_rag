@@ -66,7 +66,7 @@ GOOGLE_API_KEY="your-google-secret-key"
 See instructions below to get your own API key.
 
 #### Google Gemini
-The LLM that we will use in the notebook is Google's **Gemini 1.5 Flash**. It's fast and it offers us a free tier to play around with.
+The LLM that we will use in the notebook is Google's **Gemini 1.5 Flash**. It is a multi-modal model that can accept text, images, audio and video. It also offers a free tier for you to explore and play around with.
 
 To use the Gemini API, you'll need an API key. If you do not already have one, create a key in Google AI Studio.
 
